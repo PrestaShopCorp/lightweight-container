@@ -27,7 +27,7 @@ use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ParameterNotF
 use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ProviderNotFoundException;
 use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ServiceNotFoundException;
 
-class ServiceContainer
+abstract class ServiceContainer
 {
     /**
      * @var string
@@ -55,11 +55,6 @@ class ServiceContainer
     protected $provides = [];
 
     /**
-     * @var IContainerLogger
-     */
-    private $logger;
-
-    /**
      * @param string $configPath
      */
     public function __construct($configPath)
@@ -75,9 +70,8 @@ class ServiceContainer
      */
     public static function createInstance($configPath, IContainerLogger $logger)
     {
-        $container = new ServiceContainer($configPath);
+        $container = new static($configPath);
         $container->loadConfig();
-        $container->setLogger($logger);
         $container->init();
 
         return $container;
@@ -92,15 +86,20 @@ class ServiceContainer
     }
 
     /**
+     * @return IContainerLogger
+     */
+    public abstract function getLogger();
+
+    /**
      * @return void
      */
     public function init()
     {
-        $this->logger->debug('Initializing service container');
+        $this->getLogger()->debug('Initializing service container');
 
         foreach ($this->provides as $provider) {
             if (is_a($provider, IServiceProvider::class, true)) {
-                $this->logger->debug('Initializing service provider ' . $provider);
+                $this->getLogger()->debug('Initializing service provider ' . $provider);
 
                 (new $provider())->provide($this);
             }
@@ -134,7 +133,7 @@ class ServiceContainer
 
         $this->set($name, $service);
 
-        $this->logger->debug('Service Loaded: ' . $name);
+        $this->getLogger()->debug('Service Loaded: ' . $name);
 
         return $service;
     }
@@ -247,22 +246,6 @@ class ServiceContainer
     public function registerProvider($name, \Closure $provider)
     {
         $this->providers[$name] = $provider;
-    }
-
-    /**
-     * @return IContainerLogger
-     */
-    public function getLogger()
-    {
-        return $this->logger;
-    }
-
-    /**
-     * @param IContainerLogger $logger
-     */
-    public function setLogger($logger)
-    {
-        $this->logger = $logger;
     }
 
     /**
