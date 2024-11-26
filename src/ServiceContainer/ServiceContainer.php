@@ -64,11 +64,10 @@ abstract class ServiceContainer
 
     /**
      * @param string $configPath
-     * @param IContainerLogger $logger
      *
      * @return ServiceContainer
      */
-    public static function createInstance($configPath, IContainerLogger $logger)
+    public static function createInstance($configPath)
     {
         $container = new static($configPath);
         $container->loadConfig();
