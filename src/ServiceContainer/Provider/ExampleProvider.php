@@ -20,12 +20,8 @@
 
 namespace PrestaShopCorp\LightweightContainer\ServiceContainer\Provider;
 
-use PrestaShop\Module\PsAccounts\Api\Client\AccountsClient;
-use PrestaShop\Module\PsAccounts\Api\Client\ServicesBillingClient;
-use PrestaShop\Module\PsAccounts\Provider\ShopProvider;
-use PrestaShop\Module\PsAccounts\Service\PsAccountsService;
-use PrestaShop\Module\PsAccounts\ServiceContainer\Contract\IServiceProvider;
-use PrestaShop\Module\PsAccounts\ServiceContainer\ServiceContainer;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\Contract\IServiceProvider;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\ServiceContainer;
 
 class ExampleProvider implements IServiceProvider
 {

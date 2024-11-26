@@ -20,7 +20,7 @@
 
 namespace PrestaShopCorp\LightweightContainer\ServiceContainer\Contract;
 
-use PrestaShop\Module\PsAccounts\ServiceContainer\ServiceContainer;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\ServiceContainer;
 
 interface ISingletonService
 {
