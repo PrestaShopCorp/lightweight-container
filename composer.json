@@ -1,0 +1,19 @@
+{
+    "name": "prestashopcorp/lightweight-container",
+    "description": "No-deps lightweight service container",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Prestashopcorp\\LightweightContainer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hschoenenberger",
+            "email": "herve.schoenenberger@prestashop.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    }
+}
