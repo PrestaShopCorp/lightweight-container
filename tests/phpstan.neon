@@ -1,0 +1,9 @@
+parameters:
+	paths:
+		- ../src
+	bootstrapFiles:
+		- ../vendor/autoload.php
+	checkMissingIterableValueType: false
+	reportUnmatchedIgnoredErrors: false
+
+	level: 6
