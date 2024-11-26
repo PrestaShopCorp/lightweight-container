@@ -63,7 +63,7 @@ return [
 public function getServiceContainer()
 {
     if (null === $this->container) {
-        $this->container = \PrestaShop\Module\PsAccounts\ServiceContainer\ServiceContainer::createInstance(
+        $this->container = \PrestaShop\Module\MyModule\ServiceContainer\MyModuleServiceContainer::createInstance(
             __DIR__ . '/config.php'
         );
     }
