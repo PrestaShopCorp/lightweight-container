@@ -65,7 +65,7 @@ abstract class ServiceContainer
     /**
      * @param string $configPath
      *
-     * @return ServiceContainer
+     * @return static
      */
     public static function createInstance($configPath)
     {
