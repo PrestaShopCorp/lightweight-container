@@ -55,31 +55,31 @@ return [
 ## Init ServiceContainer in your module
 
 ```php
-	/**
-	 * @return \PrestaShopCorp\LightweightContainer\ServiceContainer\ServiceContainer
-	 *
-	 * @throws Exception
-	 */
-	public function getServiceContainer()
-	{
-	    if (null === $this->container) {
-	        $this->container = \PrestaShop\Module\PsAccounts\ServiceContainer\ServiceContainer::createInstance(
-	            __DIR__ . '/config.php'
-	        );
-	    }
-	
-	    return $this->container;
-	}
-	
-	/**
-	 * @param string $serviceName
-	 *
-	 * @return mixed
-	 */
-	public function getService($serviceName)
-	{
-	    return $this->getServiceContainer()->getService($serviceName);
-	}
+/**
+ * @return \PrestaShopCorp\LightweightContainer\ServiceContainer\ServiceContainer
+ *
+ * @throws Exception
+ */
+public function getServiceContainer()
+{
+    if (null === $this->container) {
+        $this->container = \PrestaShop\Module\PsAccounts\ServiceContainer\ServiceContainer::createInstance(
+            __DIR__ . '/config.php'
+        );
+    }
+
+    return $this->container;
+}
+
+/**
+ * @param string $serviceName
+ *
+ * @return mixed
+ */
+public function getService($serviceName)
+{
+    return $this->getServiceContainer()->getService($serviceName);
+}
 ```
 
 ## Write a ServiceProvider
