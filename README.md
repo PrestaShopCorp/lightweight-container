@@ -7,8 +7,6 @@
 
 [//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/PrestaShopCorp/lightweight-container.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/prestashopcorp/lightweight-container&#41;)
 
----
-
 # Context
 
 A module should not bundle and duplicate a heavy dependency from the framework used by the PrestaShop Core, we propose to replace module-lib-service-container with a simple service container to provide the following benefits :
