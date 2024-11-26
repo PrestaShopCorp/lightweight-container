@@ -20,13 +20,12 @@
 
 namespace PrestaShopCorp\LightweightContainer\ServiceContainer;
 
-use Monolog\Logger as MonologLogger;
-use PrestaShop\Module\PsAccounts\Log\Logger;
-use PrestaShop\Module\PsAccounts\ServiceContainer\Contract\IServiceProvider;
-use PrestaShop\Module\PsAccounts\ServiceContainer\Contract\ISingletonService;
-use PrestaShop\Module\PsAccounts\ServiceContainer\Exception\ParameterNotFoundException;
-use PrestaShop\Module\PsAccounts\ServiceContainer\Exception\ProviderNotFoundException;
-use PrestaShop\Module\PsAccounts\ServiceContainer\Exception\ServiceNotFoundException;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\Contract\IContainerLogger;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\Contract\IServiceProvider;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\Contract\ISingletonService;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ParameterNotFoundException;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ProviderNotFoundException;
+use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ServiceNotFoundException;
 
 class ServiceContainer
 {
@@ -56,7 +55,7 @@ class ServiceContainer
     protected $provides = [];
 
     /**
-     * @var MonologLogger
+     * @var IContainerLogger
      */
     private $logger;
 
@@ -70,14 +69,15 @@ class ServiceContainer
 
     /**
      * @param string $configPath
+     * @param IContainerLogger $logger
      *
      * @return ServiceContainer
      */
-    public static function createInstance($configPath)
+    public static function createInstance($configPath, IContainerLogger $logger)
     {
         $container = new ServiceContainer($configPath);
         $container->loadConfig();
-        $container->initLogger();
+        $container->setLogger($logger);
         $container->init();
 
         return $container;
@@ -250,6 +250,22 @@ class ServiceContainer
     }
 
     /**
+     * @return IContainerLogger
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
+     * @param IContainerLogger $logger
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+    }
+
+    /**
      * @param string $className
      *
      * @return mixed
@@ -261,17 +277,5 @@ class ServiceContainer
         }
 
         return null;
-    }
-
-    /**
-     * @return void
-     */
-    private function initLogger()
-    {
-        // early stage logger
-        $this->logger = Logger::create(
-            $this->getParameterWithDefault('ps_accounts.log_level', Logger::ERROR)
-        );
-        $this->set('ps_accounts.logger', $this->logger);
     }
 }

@@ -24,6 +24,8 @@ Service container should be provided by the Core, and we use it when available (
 
 [//]: # (```)
 
+### Configure repository
+
 ```json
 "repositories": [
     {
@@ -31,6 +33,12 @@ Service container should be provided by the Core, and we use it when available (
         "url": "git@github.com:PrestaShopCorp/lightweight-container.git"
     }
 ],
+```
+
+### Install package
+
+```shell
+  composer require prestashopcorp/lightweight-container:dev-main
 ```
 
 ## Create a configuration file
