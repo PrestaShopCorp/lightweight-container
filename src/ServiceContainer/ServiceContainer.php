@@ -81,7 +81,7 @@ abstract class ServiceContainer
      */
     public function loadConfig()
     {
-        $this->config = require_once $this->configPath;
+        $this->config = require $this->configPath;
     }
 
     /**
