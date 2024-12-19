@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -87,7 +88,7 @@ abstract class ServiceContainer
     /**
      * @return IContainerLogger
      */
-    public abstract function getLogger();
+    abstract public function getLogger();
 
     /**
      * @return void

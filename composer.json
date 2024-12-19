@@ -28,6 +28,9 @@
     },
     "scripts": {
         "phpunit": "./vendor/bin/phpunit --coverage-text",
-        "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --config .php_cs.dist.php --diff"
-    }
+        "php-cs-fixer": "./vendor/bin/php-cs-fixer fix --config .php_cs.dist.php --diff",
+        "header-stamp": "./vendor/bin/header-stamp --target=\".\" --license=./vendor/prestashop/header-stamp/assets/afl.txt --exclude=.github,vendor,tests"
+    },
+    "author": "PrestaShop",
+    "license": "AFL-3.0"
 }

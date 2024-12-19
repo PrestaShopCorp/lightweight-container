@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -32,12 +33,12 @@ class ExampleProvider implements IServiceProvider
      */
     public function provide(ServiceContainer $container)
     {
-//        $container->registerProvider(MyService::class, static function () use ($container) {
-//            return new ServicesBillingClient(
-//                $container->getParameter('my_module.a_parameter'),
-//                $container->get(AaService::class),
-//                $container->get(BbService::class)
-//            );
-//        });
+        //        $container->registerProvider(MyService::class, static function () use ($container) {
+        //            return new ServicesBillingClient(
+        //                $container->getParameter('my_module.a_parameter'),
+        //                $container->get(AaService::class),
+        //                $container->get(BbService::class)
+        //            );
+        //        });
     }
 }
