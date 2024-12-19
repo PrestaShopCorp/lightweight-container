@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright since 2007 PrestaShop SA and Contributors
  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
@@ -63,20 +64,6 @@ abstract class ServiceContainer
     }
 
     /**
-     * @param string $configPath
-     *
-     * @return static
-     */
-    public static function createInstance($configPath)
-    {
-        $container = new static($configPath);
-        $container->loadConfig();
-        $container->init();
-
-        return $container;
-    }
-
-    /**
      * @return void
      */
     public function loadConfig()
@@ -87,13 +74,15 @@ abstract class ServiceContainer
     /**
      * @return IContainerLogger
      */
-    public abstract function getLogger();
+    abstract public function getLogger();
 
     /**
-     * @return void
+     * @return ServiceContainer
      */
     public function init()
     {
+        $this->loadConfig();
+
         $this->getLogger()->debug('Initializing service container');
 
         foreach ($this->provides as $provider) {
@@ -103,6 +92,8 @@ abstract class ServiceContainer
                 (new $provider())->provide($this);
             }
         }
+
+        return $this;
     }
 
     /**

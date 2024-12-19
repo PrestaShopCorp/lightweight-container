@@ -1,5 +1,12 @@
 # lightweight-container
 
+[![Source Code](https://img.shields.io/badge/source-PrestaShopCorp/lightweight--container-blue.svg?style=flat-square)](https://github.com/PrestaShopCorp/lightweight-container)
+[![Latest Version](https://img.shields.io/github/release/PrestaShopCorp/lightweight-container.svg?style=flat-square)](https://github.com/PrestaShopCorp/lightweight-container/releases)
+[![Software License](https://img.shields.io/badge/license-OSL-brightgreen.svg?style=flat-square)](https://github.com/PrestaShopCorp/lightweight-container/blob/main/LICENSE)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/PrestaShopCorp/lightweight-container/.github/workflows/php.yml?label=CI&logo=github&style=flat-square)](https://github.com/PrestaShopCorp/lightweight-container/actions?query=workflow%3ACI)
+
+[//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/PrestaShopCorp/lightweight-container.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/prestashopcorp/lightweight-container&#41;)
+
 # Context
 
 A module should not bundle and duplicate a heavy dependency from the framework used by the PrestaShop Core, we propose to replace module-lib-service-container with a simple service container to provide the following benefits :
