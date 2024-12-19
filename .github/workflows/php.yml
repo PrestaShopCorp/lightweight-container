@@ -1,5 +1,9 @@
 name: PHP tests
-on: [push, pull_request]
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, labeled]
+
 jobs:
   php-linter:
     name: PHP Syntax check 5.6|7.2|8.0|8.1
