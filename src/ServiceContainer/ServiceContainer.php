@@ -77,7 +77,7 @@ abstract class ServiceContainer
     abstract public function getLogger();
 
     /**
-     * @return ServiceContainer
+     * @return static
      */
     public function init()
     {
