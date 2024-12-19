@@ -24,7 +24,7 @@ class ServiceContainerTest extends TestCase
 
     public function setUp(): void
     {
-        $this->container = TestServiceContainer::createInstance(__DIR__ . '/config.php');
+        $this->container = (new TestServiceContainer(__DIR__ . '/config.php'))->init();
     }
 
     /**
