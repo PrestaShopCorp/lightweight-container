@@ -3,7 +3,6 @@
 namespace PrestaShopCorp\LightweightContainer\Test\ServiceContainer;
 
 use PHPUnit\Framework\TestCase;
-use PrestaShopCorp\LightweightContainer\ServiceContainer\Contract\ISingletonService;
 use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ParameterNotFoundException;
 use PrestaShopCorp\LightweightContainer\ServiceContainer\Exception\ServiceNotFoundException;
 use PrestaShopCorp\LightweightContainer\ServiceContainer\ServiceContainer;
@@ -111,6 +110,7 @@ class ServiceContainerTest extends TestCase
         $service = $this->createMock(TestService::class);
         $this->container->registerProvider(TestService::class, static function () use ($service) {
             $service->init();
+
             return $service;
         });
 
