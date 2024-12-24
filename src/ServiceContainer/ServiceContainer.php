@@ -164,32 +164,21 @@ abstract class ServiceContainer
 
     /**
      * @param string $name
+     * @param mixed $default
      *
-     * @return string
+     * @return mixed
      *
      * @throws ParameterNotFoundException
      */
-    public function getParameter($name)
+    public function getParameter($name, $default = null)
     {
         if (array_key_exists($name, $this->config)) {
             return $this->config[$name];
+        }
+        if (func_num_args() > 1) {
+            return $default;
         }
         throw new ParameterNotFoundException('Configuration parameter "' . $name . '" not found.');
-    }
-
-    /**
-     * @param string $name
-     * @param string $default
-     *
-     * @return string
-     */
-    public function getParameterWithDefault($name, $default)
-    {
-        if (array_key_exists($name, $this->config)) {
-            return $this->config[$name];
-        }
-
-        return $default;
     }
 
     /**
