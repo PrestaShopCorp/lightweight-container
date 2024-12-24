@@ -56,7 +56,18 @@ class ServiceContainerTest extends TestCase
         $default = 'foo';
 
         $this->assertFalse($this->container->hasParameter('not_found'));
-        $this->assertEquals($default, $this->container->getParameterWithDefault('not_found', $default));
+        $this->assertEquals($default, $this->container->getParameter('not_found', $default));
+    }
+
+    /**
+     * @test
+     */
+    public function itShouldGetParameterDefaultNullValue()
+    {
+        $default = null;
+
+        $this->assertFalse($this->container->hasParameter('not_found'));
+        $this->assertEquals($default, $this->container->getParameter('not_found', $default));
     }
 
     /**
@@ -67,7 +78,7 @@ class ServiceContainerTest extends TestCase
         $default = 'foo';
 
         $this->assertTrue($this->container->hasParameter('log_level'));
-        $this->assertEquals('DEBUG', $this->container->getParameterWithDefault('log_level', $default));
+        $this->assertEquals('DEBUG', $this->container->getParameter('log_level', $default));
     }
 
     /**
