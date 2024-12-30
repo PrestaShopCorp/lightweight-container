@@ -201,6 +201,10 @@ services:
       - 'PrestaShop\Module\MyModule\Service\MyModuleService'
 ```
 
+# Caveats
+
+If you previously were using another library to retrieve your module container services, beware of the exceptions thrown if you catched them directly somewhere in your code.
+
 # Improvements (next steps)
 - Unbind early injected logger (make it a normal service with early injection);
 - Add an optional metadata parameter to the `registerProvider` method containing `className` (in case the key doesn’t match a real class name), `singleton` (decide whether its a singleton, true by default), etc …
