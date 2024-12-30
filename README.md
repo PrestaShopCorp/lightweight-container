@@ -155,6 +155,51 @@ class MyModuleServiceContainer extends ServiceContainer
     }
 ```
 
+# Share services with the PrestaShop Core container
+
+For services that should stay accessible through the Core service container with the legacy `MyModule::get` inherited method you can create a `SharedProvider` :
+
+```php
+// src/ServiceContainer/StaticProvider.php
+
+namespace PrestaShop\Module\MyModule\ServiceContainer;
+
+class SharedProvider
+{
+    /**
+     * @param string $serviceName
+     *
+     * @return mixed
+     */
+    public static function provide($serviceName)
+    {
+        /** @var \My_module $module */
+        $module = \Module::getInstanceByName('my_module');
+
+        return $module->getService($serviceName);
+    }
+}
+```
+
+Then just declare your shared services the normal way with the PrestaShop yaml files using the `SharedProvider` :
+
+```yaml
+# config/admin/services.yml
+services:
+  ##########################
+  # Shared Services :
+  # Those services might be accessed directly from the core container
+  # by some modules.
+  # Doing so we maintain compatibility & ensure the same instance is provided.
+
+  PrestaShop\Module\MyModule\Service\MyModuleService:
+    class: PrestaShop\Module\MyModule\Service\MyModuleService
+    public: true
+    factory: ['PrestaShop\Module\MyModule\ServiceContainer\SharedProvider', 'provide']
+    arguments:
+      - 'PrestaShop\Module\MyModule\Service\MyModuleService'
+```
+
 # Improvements (next steps)
 - Unbind early injected logger (make it a normal service with early injection);
 - Add an optional metadata parameter to the `registerProvider` method containing `className` (in case the key doesn’t match a real class name), `singleton` (decide whether its a singleton, true by default), etc …
