@@ -185,6 +185,7 @@ Then just declare your shared services the normal way with the PrestaShop yaml f
 
 ```yaml
 # config/admin/services.yml
+
 services:
   ##########################
   # Shared Services :
